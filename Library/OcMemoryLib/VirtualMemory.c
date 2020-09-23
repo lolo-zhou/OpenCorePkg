@@ -21,6 +21,69 @@
 #include <Library/OcMemoryLib.h>
 
 
+STATIC OC_MEMORY_TYPE_DESC OcMemoryTypeString [OC_MEMORY_TYPE_DESC_COUNT] = {
+  {
+    "Reserved",
+    EfiReservedMemoryType
+  },
+  {
+    "LoaderCode",
+    EfiLoaderCode
+  },
+  {
+    "LoaderData",
+    EfiLoaderData
+  },
+  {
+    "BootServiceCode",
+    EfiBootServicesCode
+  },
+  {
+    "BootServiceData",
+    EfiBootServicesData
+  },
+  {
+    "RuntimeCode",
+    EfiRuntimeServicesCode
+  },
+  {
+    "RuntimeData",
+    EfiRuntimeServicesData
+  },
+  {
+    "Available",
+    EfiConventionalMemory
+  },
+  {
+    "Persistent",
+    EfiPersistentMemory
+  },
+  {
+    "UnusableMemory",
+    EfiUnusableMemory
+  },
+  {
+    "ACPIReclaimMemory",
+    EfiACPIReclaimMemory
+  },
+  {
+    "ACPIMemoryNVS",
+    EfiACPIMemoryNVS
+  },
+  {
+    "MemoryMappedIO",
+    EfiMemoryMappedIO
+  },
+  {
+    "MemoryMappedIOPortSpace",
+    EfiMemoryMappedIOPortSpace
+  },
+  {
+    "PalCode",
+    EfiPalCode
+  }
+};
+
 EFI_STATUS
 OcDescToMemoryType (
   IN  CHAR8            *MemoryTypeDesc,
