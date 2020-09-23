@@ -20,6 +20,32 @@
 #include <Library/OcDebugLogLib.h>
 #include <Library/OcMemoryLib.h>
 
+
+EFI_STATUS
+OcDescToMemoryType (
+  IN  CHAR8            *MemoryTypeDesc,
+  OUT EFI_MEMORY_TYPE  *MemoryType
+  )
+{
+  UINTN       Index;
+  EFI_STATUS  Status = EFI_INVALID_PARAMETER;
+
+  if (MemoryTypeDesc != NULL && MemoryType !=NULL) {
+    for (Index = 0; Index < OC_MEMORY_TYPE_DESC_COUNT; Index++) {
+      if (AsciiStrCmp (MemoryTypeDesc, OcMemoryTypeString[Index].Name) == 0) {
+        Status = EFI_SUCCESS;
+        *MemoryType=OcMemoryTypeString[Index].Type;
+        break;
+      }
+    }
+    if (EFI_ERROR (Status)) {
+      Status = EFI_NOT_FOUND;
+    }
+  }
+
+  return Status;
+}
+
 PAGE_MAP_AND_DIRECTORY_POINTER  *
 OcGetCurrentPageTable (
   OUT UINTN                           *Flags  OPTIONAL
